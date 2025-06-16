@@ -1,0 +1,21 @@
+<!-- ======================  CUSTOMER TESTIMONIALS  ====================== -->
+<section class="container my-5">
+    <h2 class="mb-4 text-center">What Our Customers Say</h2>
+    <div class="row g-4">
+        @for (int i = 1; i <= 3; i++)
+        {
+            <div class="col-md-4">
+                <div class="card p-4 shadow-sm h-100 border-0">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="@($"/img/testi-{i}.jpg")" class="rounded-circle me-3" style="width:56px;height:56px;object-fit:cover;" alt="Customer @i" />
+                        <div>
+                            <h6 class="mb-0 fw-semibold">Customer @i</h6>
+                            <small class="text-muted">Verified Buyer</small>
+                        </div>
+                    </div>
+                    <p class="fst-italic mb-0">“Great products and fast delivery! Highly recommended.”</p>
+                </div>
+            </div>
+        }
+    </div>
+</section>

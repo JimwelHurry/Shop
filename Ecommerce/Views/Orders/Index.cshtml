@@ -1,0 +1,144 @@
+@{
+    ViewData["Title"] = "My Orders";
+
+    /* --- Sample dataset (replace with Model later) --- */
+    var orders = new[] {
+        new { Id = 1001, Date = "Jun 14 2025", Status = "Shipped",   Total = 2498.00,
+              Items = new[] {
+                  new { Qty = 1, Name = "Product Name 1", Price = 1299.00, Img = "fp-1.jpg" },
+                  new { Qty = 2, Name = "Product Name 2", Price =  299.00, Img = "fp-5.jpg" }
+              }},
+        new { Id = 1002, Date = "Jun 10 2025", Status = "Delivered", Total = 5499.00,
+              Items = new[] { new { Qty = 1, Name = "Product Name 3", Price = 5499.00, Img = "fp-1.jpg" } } },
+        new { Id = 1003, Date = "Jun 05 2025", Status = "Pending",   Total =  899.00,
+              Items = new[] { new { Qty = 1, Name = "Product Name 4", Price =  899.00, Img = "fp-3.jpg" } } }
+    };
+
+    string Badge(string s) => s switch {
+        "Pending"    => "warning",
+        "Processing" => "primary",
+        "Shipped"    => "info",
+        "Delivered"  => "success",
+        "Canceled"   => "danger",
+        _            => "secondary"
+    };
+}
+
+<section class="bg-light border-bottom min-vh-50 d-flex align-items-center">
+    <div class="container text-center py-5">
+        <h1 class="display-5 fw-bold mb-2">📦 My Orders</h1>
+        <p class="lead text-muted">Track and manage all your purchases in one place.</p>
+    </div>
+</section>
+
+
+<!-- ========= TOOLBAR ========= -->
+<section class="container mb-4">
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-3 d-flex flex-wrap gap-2 align-items-center">
+            <input type="search" class="form-control flex-grow-1" placeholder="Search order # or item…">
+            <select class="form-select w-auto">
+                <option value="">All Statuses</option>
+                <option>Pending</option>
+                <option>Processing</option>
+                <option>Shipped</option>
+                <option>Delivered</option>
+                <option>Canceled</option>
+            </select>
+        </div>
+    </div>
+</section>
+
+<!-- ========= ACCORDION LIST ========= -->
+<section class="container mb-5">
+    <div class="accordion" id="ordersAcc">
+        @foreach (var o in orders)
+        {
+            <div class="accordion-item border-0 shadow-sm mb-3">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-white"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#ord-@o.Id">
+                        <div class="w-100 d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>Order #@o.Id</strong>
+                                <span class="d-block small text-muted">@o.Date</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="badge bg-@Badge(o.Status)">@o.Status</span>
+                                <span class="fw-semibold">₱@o.Total.ToString("N2")</span>
+                            </div>
+                        </div>
+                    </button>
+                </h2>
+
+                <div id="ord-@o.Id" class="accordion-collapse collapse"
+                     data-bs-parent="#ordersAcc">
+                    <div class="accordion-body">
+                        <!-- Item table -->
+                        <div class="table-responsive mb-3">
+                            <table class="table align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th style="width:60px;"></th>
+                                        <th>Item</th>
+                                        <th class="text-center">Qty</th>
+                                        <th class="text-end">Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var itm in o.Items)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <img src="@($"/img/{itm.Img}")"
+                                                     class="rounded" style="width:50px;height:50px;object-fit:cover;">
+                                            </td>
+                                            <td>@itm.Name</td>
+                                            <td class="text-center">@itm.Qty</td>
+                                            <td class="text-end">₱@itm.Price.ToString("N2")</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Summary -->
+                        <div class="d-flex justify-content-end mb-3">
+                            <div class="text-end">
+                                <div>Subtotal  <span class="fw-semibold">₱@o.Total.ToString("N2")</span></div>
+                                <div>Shipping  <span class="fw-semibold">₱0.00</span></div>
+                                <div class="fs-5 fw-bold">Grand Total  ₱@o.Total.ToString("N2")</div>
+                            </div>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="d-flex justify-content-end gap-2 flex-wrap">
+                            @if (o.Status == "Delivered")
+                            {
+                                <a class="btn btn-outline-secondary btn-sm" href="/Reviews/New/@o.Id">Leave Review</a>
+                            }
+                            @if (o.Status is "Pending" or "Processing")
+                            {
+                                <a class="btn btn-outline-danger btn-sm" href="/Orders/Cancel/@o.Id">Cancel Order</a>
+                            }
+                            <a class="btn btn-primary btn-sm" href="/Orders/Invoice/@o.Id">Download Invoice</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+@if (!orders.Any())
+{
+    <section class="container text-center my-5">
+        <i class="bi bi-card-list fs-1 text-muted"></i>
+        <p class="lead text-muted">No orders yet. Start shopping now!</p>
+        <a href="/Products" class="btn btn-primary">Shop Products</a>
+    </section>
+}
+
+@await Html.PartialAsync("_Footer")

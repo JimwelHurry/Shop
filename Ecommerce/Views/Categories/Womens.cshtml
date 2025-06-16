@@ -1,0 +1,97 @@
+@{
+    ViewData["Title"] = "Women's Categories";
+}
+
+<section class="container my-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">Women's Categories</h1>
+        <p class="lead text-muted">Discover the latest trends and timeless styles tailored for women.</p>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Category Card: Clothing -->
+        <div class="col-md-4 col-sm-6">
+            <a href="/Products/Category/Womens/Clothing" class="text-decoration-none text-dark">
+                <div class="card shadow-sm h-100 hover-shadow rounded-3">
+                    <img src="/img/blog-1.jpg" class="card-img-top" alt="Women's Clothing" />
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-semibold">Clothing</h5>
+                        <p class="card-text text-muted">Dresses, blouses, skirts, and more.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Category Card: Shoes -->
+        <div class="col-md-4 col-sm-6">
+            <a href="/Products/Category/Womens/Shoes" class="text-decoration-none text-dark">
+                <div class="card shadow-sm h-100 hover-shadow rounded-3">
+                    <img src="/img/blog-2.jpg" class="card-img-top" alt="Women's Shoes" />
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-semibold">Shoes</h5>
+                        <p class="card-text text-muted">Heels, flats, sneakers, and sandals.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Category Card: Accessories -->
+        <div class="col-md-4 col-sm-6">
+            <a href="/Products/Category/Womens/Accessories" class="text-decoration-none text-dark">
+                <div class="card shadow-sm h-100 hover-shadow rounded-3">
+                    <img src="/img/blog-3.jpg" class="card-img-top" alt="Women's Accessories" />
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-semibold">Accessories</h5>
+                        <p class="card-text text-muted">Bags, jewelry, scarves, and more.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<section class="container my-5">
+    <hr class="my-5" />
+
+    <h3 class="mb-4">Hot Deals</h3>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="/img/deal-1.jpg" class="card-img-top" alt="Women's Dress Deal" />
+                <div class="card-body">
+                    <h5 class="card-title">Summer Dresses - 40% Off</h5>
+                    <p class="card-text">Lightweight, comfortable, and perfect for sunny days.</p>
+                    <a href="/Products/Category/Womens/Clothing" class="btn btn-primary btn-sm">Shop Now</a>
+                </div>
+            </div>
+        </div>
+        <!-- Add more deal cards as needed -->
+    </div>
+
+    <hr class="my-5" />
+
+    <h3 class="mb-4">New Arrivals</h3>
+    <div class="row g-4">
+        @for (int j = 1; j <= 4; j++)
+{
+    // Kapag 4th card, gamitin fp‑6.jpg
+    int imgIndex = (j == 4) ? 1 : j;
+
+    <div class="col-md-3 col-6">
+        <div class="card h-100 shadow-sm border-0">
+            <img src="@($"/img/fp-{imgIndex}.jpg")"
+                 class="card-img-top"
+                 alt="New Arrival @j" />
+            <div class="card-body text-center">
+                <h6 class="card-title">Product Name @j</h6>
+                <p class="text-primary fw-bold">₱999.00</p>
+                <a href="/Products/Details/@j" class="btn btn-outline-primary btn-sm">View</a>
+            </div>
+        </div>
+    </div>
+}
+
+    </div>
+</section>

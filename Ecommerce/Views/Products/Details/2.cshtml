@@ -1,0 +1,84 @@
+@{
+    ViewData["Title"] = "Featured Product";
+    int i = 2; // Example for product 2
+}
+
+<section class="container my-5">
+    <div class="row">
+        <!-- Product Image -->
+        <div class="col-md-6">
+            <img src="@($"/img/fp-{i}.jpg")" alt="Product @i" class="img-fluid rounded shadow-sm" />
+        </div>
+
+        <!-- Product Info -->
+        <div class="col-md-6 d-flex flex-column">
+            <h1 class="mb-3">Product Name @i</h1>
+
+            <div class="mb-3">
+                <span class="text-warning fs-4">★★★★☆</span>
+                <small class="text-muted">(120 reviews)</small>
+            </div>
+
+            <p class="fs-3 fw-bold text-primary mb-3">₱999.00</p>
+
+            <p class="mb-4">
+                This is a brief description of Product @i. High quality, reliable, and perfect for your needs.
+            </p>
+
+            <div class="mb-4">
+                <label for="qty" class="form-label">Quantity:</label>
+                <input type="number" id="qty" class="form-control w-25" value="1" min="1" />
+            </div>
+
+            <button class="btn btn-primary btn-lg w-50 mb-3">Add to Cart</button>
+
+            <hr />
+
+            <h5>Product Details</h5>
+            <ul>
+                <li>Feature 1: Durable material</li>
+                <li>Feature 2: Available in multiple colors</li>
+                <li>Feature 3: 1-year warranty</li>
+                <li>Feature 4: Free shipping nationwide</li>
+            </ul>
+
+            <div class="mt-auto">
+                <h6>Share this product:</h6>
+                <a href="#" class="me-2 text-decoration-none text-primary">Facebook</a>
+                <a href="#" class="me-2 text-decoration-none text-info">Twitter</a>
+                <a href="#" class="text-decoration-none text-primary">LinkedIn</a>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+    <!-- Related Products Section -->
+    <h3 class="mt-5 mb-4">You May Also Like</h3>
+    <div class="row">
+       @for (int related = 2; related <= 5; related++)
+        {
+            // 🔄 kapag related == 4, gamitin fp‑1.jpg
+            int imgIndex = (related == 4) ? 1 : related;
+
+            <div class="col-md-3 col-6 mb-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="@($"/img/fp-{imgIndex}.jpg")"
+                        class="card-img-top"
+                        alt="Product @related" />
+                    <div class="card-body text-center">
+                        <h6 class="card-title">Product Name @related</h6>
+                        <p class="text-primary fw-bold">₱999.00</p>
+                        <a href="/Products/Details/@related"
+                        class="btn btn-outline-primary btn-sm">
+                            View
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+@* Footer SECTION *@
+@await Html.PartialAsync("_Footer")

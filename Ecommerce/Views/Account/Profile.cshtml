@@ -1,0 +1,109 @@
+@{
+    ViewData["Title"] = "Profile Page";
+}
+
+<section class="container my-5">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 mb-4">
+            <div class="list-group shadow-sm rounded-2">
+                <a href="#" class="list-group-item list-group-item-action active">Profile Overview</a>
+                <a href="#" class="list-group-item list-group-item-action">Orders</a>
+                <a href="#" class="list-group-item list-group-item-action">Change Password</a>
+                <a href="#" class="list-group-item list-group-item-action text-danger">Logout</a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-9">
+
+            <!-- Personal Information -->
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-body">
+                    <h5 class="fw-semibold mb-4">Personal Information</h5>
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control" value="Jimwel" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control" value="Manguiat" />
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control" value="you@email.com" />
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" value="+63 900 000 0000" />
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary mt-4">Update Profile</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Change Password -->
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-body">
+                    <h5 class="fw-semibold mb-4">Change Password</h5>
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Current Password</label>
+                            <input type="password" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">New Password</label>
+                            <input type="password" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Confirm New Password</label>
+                            <input type="password" class="form-control" />
+                        </div>
+                        <button type="submit" class="btn btn-outline-secondary">Change Password</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Recent Orders -->
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="fw-semibold mb-3">Recent Orders</h5>
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#1001</td>
+                                    <td>June 10, 2025</td>
+                                    <td>₱1,998.00</td>
+                                    <td><span class="badge bg-success">Delivered</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#1002</td>
+                                    <td>June 12, 2025</td>
+                                    <td>₱799.00</td>
+                                    <td><span class="badge bg-warning text-dark">Pending</span></td>
+                                </tr>
+                                <!-- Add more rows as needed -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+@* Footer *@
+@await Html.PartialAsync("_Footer")

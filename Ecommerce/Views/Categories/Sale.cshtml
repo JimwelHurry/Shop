@@ -1,0 +1,106 @@
+@{
+    ViewData["Title"] = "Sale Categories";
+}
+
+<section class="container my-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">Sale Categories</h1>
+        <p class="lead text-muted">Explore our wide range of men’s products. Find the perfect style that fits you.</p>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Category Card: Clothing -->
+        <div class="col-md-4 col-sm-6">
+            <a href="/Products/Category/Mens/Clothing" class="text-decoration-none text-dark">
+                <div class="card shadow-sm h-100 hover-shadow rounded-3">
+                    <img src="/img/fp-5.jpg" class="card-img-top" alt="Men's Clothing" />
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-semibold">Clothing</h5>
+                        <p class="card-text text-muted">Shirts, jackets, pants, and more.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Category Card: Shoes -->
+        <div class="col-md-4 col-sm-6">
+            <a href="/Products/Category/Mens/Shoes" class="text-decoration-none text-dark">
+                <div class="card shadow-sm h-100 hover-shadow rounded-3">
+                    <img src="/img/fp-6.jpg" class="card-img-top" alt="Men's Shoes" />
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-semibold">Shoes</h5>
+                        <p class="card-text text-muted">Sneakers, boots, formal shoes, and more.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Category Card: Accessories -->
+        <div class="col-md-4 col-sm-6">
+            <a href="/Products/Category/Mens/Accessories" class="text-decoration-none text-dark">
+                <div class="card shadow-sm h-100 hover-shadow rounded-3">
+                    <img src="/img/fp-2.jpg" class="card-img-top" alt="Men's Accessories" />
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-semibold">Accessories</h5>
+                        <p class="card-text text-muted">Watches, belts, hats, and more.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<section class="container my-5">
+    <!-- Existing Categories here ... -->
+
+    <hr class="my-5" />
+
+    <h3 class="mb-4">Featured Deals</h3>
+    <div class="row g-4">
+        <!-- Example deal card -->
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="/img/deal-4.jpg" class="card-img-top" alt="Men's Shoes Deal" />
+                <div class="card-body">
+                    <h5 class="card-title">Men’s Shoes - 30% Off</h5>
+                    <p class="card-text">Comfortable sneakers now at a discount.</p>
+                    <a href="/Products/Category/Mens/Shoes" class="btn btn-primary btn-sm">Shop Now</a>
+                </div>
+            </div>
+        </div>
+        <!-- Repeat for other deals -->
+    </div>
+
+    <hr class="my-5" />
+
+    <h3 class="mb-4">New Arrivals</h3>
+    <div class="row g-4">
+        @for (int j = 1; j <= 4; j++)
+{
+    // Kapag 4th card, gamitin fp‑6.jpg
+    int imgIndex = (j == 4) ? 1 : j;
+
+    <div class="col-md-3 col-6">
+        <div class="card h-100 shadow-sm border-0">
+            <img src="@($"/img/fp-{imgIndex}.jpg")"
+                 class="card-img-top"
+                 alt="New Arrival @j" />
+            <div class="card-body text-center">
+                <h6 class="card-title">Product Name @j</h6>
+                <p class="text-primary fw-bold">₱999.00</p>
+                <a href="/Products/Details/@j" class="btn btn-outline-primary btn-sm">View</a>
+            </div>
+        </div>
+    </div>
+}
+
+    </div>
+</section>
+
+
+@* Footer SECTION *@
+@await Html.PartialAsync("_Footer")
+
+

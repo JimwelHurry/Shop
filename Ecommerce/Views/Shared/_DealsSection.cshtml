@@ -1,0 +1,21 @@
+<!-- ============================  DEALS SECTION  ============================ -->
+<section class="container my-5">
+    <h2 class="mb-4 text-danger">🔥 Today's Deals</h2>
+    <div class="row">
+        @for (int i = 1; i <= 4; i++)
+        {
+            <div class="col-lg-3 col-md-4 col-6 mb-4">
+                <div class="card border-danger h-100 shadow-sm">
+                    <img src="@($"/img/deal-{i}.jpg")" class="card-img-top" alt="Deal @i" />
+                    <div class="card-body d-flex flex-column">
+                        <h6 class="card-title">Deal Item @i</h6>
+                        <p class="card-text text-danger fw-semibold mb-3">
+                            <s>₱1,299.00</s> ₱899.00
+                        </p>
+                        <a href="/Products/Details/@(i+100)" class="btn btn-danger btn-sm mt-auto w-100">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>

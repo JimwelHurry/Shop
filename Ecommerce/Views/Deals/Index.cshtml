@@ -1,0 +1,64 @@
+@{
+    ViewData["Title"] = "Deals Page";
+}
+
+@{
+    ViewData["Title"] = "Hot Deals";
+}
+
+<!-- ==================== HERO BANNER WITH COUNTDOWN ==================== -->
+<section class="bg-light py-5 border-bottom text-center">
+    <div class="container">
+        <h1 class="display-5 text-danger fw-bold">🔥 Hot Deals You Can’t Miss</h1>
+        <p class="lead text-muted">Grab these limited-time offers before they're gone!</p>
+        <div id="deal-timer" class="fs-4 fw-bold text-danger mt-3">
+            ⏰ Ends in: <span id="countdown">Loading...</span>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== FILTER BUTTONS ==================== -->
+<section class="container my-4">
+    <div class="d-flex gap-2 flex-wrap justify-content-center">
+        <button class="btn btn-outline-danger btn-sm">All Deals</button>
+        <button class="btn btn-outline-secondary btn-sm">Flash Sale</button>
+        <button class="btn btn-outline-secondary btn-sm">Buy 1 Take 1</button>
+        <button class="btn btn-outline-secondary btn-sm">Under ₱500</button>
+        <button class="btn btn-outline-secondary btn-sm">Limited Stock</button>
+    </div>
+</section>
+
+<!-- ============================  DEALS SECTION  ============================ -->
+<section class="container my-5">
+    <h2 class="mb-4 text-danger">🔥 Today's Best Picks</h2>
+    <div class="row">
+        @for (int i = 1; i <= 4; i++)
+        {
+            <div class="col-lg-3 col-md-4 col-6 mb-4">
+                <div class="card border-danger h-100 shadow-sm">
+                    <img src="@($"/img/deal-{i}.jpg")" class="card-img-top" alt="Deal @i" />
+                    <div class="card-body d-flex flex-column">
+                        <h6 class="card-title">Hot Item @i</h6>
+                        <p class="card-text text-danger fw-semibold mb-3">
+                            <s>₱1,299.00</s> ₱899.00
+                        </p>
+                        <a href="/Products/Details/@(i+100)" class="btn btn-danger btn-sm mt-auto w-100">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+<!-- ==================== PROMO BANNER ==================== -->
+<section class="container my-5">
+    <div class="bg-danger text-white p-4 rounded text-center shadow-sm">
+        <h3 class="fw-bold mb-1">🎁 Buy 1 Take 1 Promo</h3>
+        <p class="mb-0">Available on select items until midnight. Hurry!</p>
+    </div>
+</section>
+
+
+@* Footer SECTION *@
+@await Html.PartialAsync("_Footer")
+

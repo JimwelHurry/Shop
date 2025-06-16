@@ -1,0 +1,19 @@
+<!-- =========================  BLOG / NEWS SECTION  ========================= -->
+<section class="container my-5">
+    <h2 class="mb-4">Latest from Our Blog</h2>
+    <div class="row g-4">
+        @for (int i = 1; i <= 3; i++)
+        {
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 h-100">
+                    <img src="@($"/img/blog-{i}.jpg")" class="card-img-top" alt="Blog @i" />
+                    <div class="card-body d-flex flex-column">
+                        <h6 class="fw-semibold">Blog Post Title @i</h6>
+                        <p class="text-muted small">June 15, 2025</p>
+                        <a href="@($"/Blog/Blog{i}")" class="stretched-link mt-auto text-decoration-none text-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>

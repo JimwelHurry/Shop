@@ -1,0 +1,30 @@
+<!-- =======================  FEATURED PRODUCTS  ======================= -->
+<section class="container my-5">
+    <h2 class="mb-4">Featured Products</h2>
+    <div class="row">
+       @for (int i = 1; i <= 8; i++)
+{
+    // ‼️ Logic para ulitin ang image #1 at #2
+    int imgIndex = i;          // default – kapareho ng i
+    if (i == 4) imgIndex = 1;  // card #4 gagamit ng fp-1.jpg
+    if (i == 7) imgIndex = 2;  // card #7 gagamit ng fp-2.jpg
+
+    <div class="col-lg-3 col-md-4 col-6 mb-4">
+        <div class="card h-100 shadow-sm border-0">
+            <img src="@($"/img/fp-{imgIndex}.jpg")"
+                 class="card-img-top"
+                 alt="Featured Product @i" />
+            <div class="card-body d-flex flex-column">
+                <h6 class="card-title fw-semibold">Product Name @i</h6>
+                <p class="text-primary fw-bold mb-3">₱999.00</p>
+                <a href="/Products/Details/@i"
+                   class="mt-auto btn btn-outline-primary btn-sm w-100">
+                   View
+                </a>
+            </div>
+        </div>
+    </div>
+}
+
+    </div>
+</section>

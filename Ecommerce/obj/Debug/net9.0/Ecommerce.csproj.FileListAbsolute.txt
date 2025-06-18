@@ -91,3 +91,4 @@
 /Users/jimwelmanguiat/Desktop/ecom/Ecommerce/obj/Debug/net9.0/compressed/sx55vpc2o0-eqkeficuvm.gz
 /Users/jimwelmanguiat/Desktop/ecom/Ecommerce/obj/Debug/net9.0/compressed/ukstm540yu-yos7d9v3u3.gz
 /Users/jimwelmanguiat/Desktop/ecom/Ecommerce/obj/Debug/net9.0/compressed/itphxkcffk-ln1ydeg9gz.gz
+/Users/jimwelmanguiat/Desktop/ecom/Ecommerce/obj/Debug/net9.0/Ecommerce.sourcelink.json
